@@ -73,9 +73,20 @@ WikiMUD includes several built-in components:
 - **Linked Text**: Hyperlinked interactive text
 - **Journal View**: Structured narrative format
 
+## Development Status & Roadmap
+
+WikiMUD Engine is in active development. See the [Development Roadmap](DEVELOPMENT_ROADMAP.md) for current priorities and planned features.
+
+**Current Status:**
+- ✅ Core architecture implemented
+- ✅ Basic component system working  
+- ❌ Test framework needed (critical priority)
+- ❌ Multi-user networking not yet implemented
+- ❌ Game mechanics need development
+
 ## Contributing
 
-See [Contributing Guide](docs/guides/contributing.md) for development setup and contribution guidelines.
+Contributions are welcome! Please check the [Development Roadmap](DEVELOPMENT_ROADMAP.md) for current priorities, then see our [Contributing Guide](docs/guides/contributing.md) for development setup and guidelines.
 
 ## License
 
