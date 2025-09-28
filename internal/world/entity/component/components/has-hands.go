@@ -28,7 +28,7 @@ func (h *HasHands) BuildComponent(p *prototype.ObjectPrototype) component.OCompo
 	if val, ok := p.Properties["hand_count"]; ok {
 		oComponent.SetProperty("hand_count", val)
 	} else {
-		oComponent.SetProperty("hand_count", 2)
+		oComponent.SetProperty("hand_count", 2.0)
 	}
 
 	if val, ok := p.Fields["hand_description"]; ok {
