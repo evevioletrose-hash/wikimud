@@ -13,6 +13,11 @@ func (h *HasLegs) BuildComponent(p *prototype.ObjectPrototype) component.OCompon
 	newComponent := HasLegs{}
 	oComponent := newComponent.OComponent
 
+	// Initialize maps
+	oComponent.Flags = make(map[string]bool)
+	oComponent.Fields = make(map[string]string)
+	oComponent.Properties = make(map[string]float32)
+
 	if desc, ok := p.Fields["leg_description"]; ok {
 		oComponent.SetField("leg_description", desc)
 	} else {
