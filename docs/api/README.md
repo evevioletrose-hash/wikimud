@@ -186,6 +186,361 @@ Builds CanOpen component from prototype data.
 - `is_locked`: true (if can_lock is true)
 - `key`: "" (empty)
 
+#### HasHands
+
+Enables Take, Hold, Move, Open, Close, Drop, Pickpocket verbs.
+
+```go
+type HasHands struct {
+    component.OComponent
+}
+```
+
+**Component Properties:**
+- `has_hands` (flag): Whether entity has functional hands
+- `hand_count` (property): Number of hands
+- `hand_description` (field): Description of hands
+
+**Default Values:**
+- `has_hands`: false
+- `hand_count`: 2
+- `hand_description`: "dexterous hands"
+
+#### HasEars
+
+Enables Listen verb and receive heard events in scope.
+
+```go
+type HasEars struct {
+    component.OComponent
+}
+```
+
+**Component Properties:**
+- `has_ears` (flag): Whether entity has functional ears
+- `hearing_acuity` (property): Hearing sensitivity
+- `ear_description` (field): Description of ears
+
+**Default Values:**
+- `has_ears`: false
+- `hearing_acuity`: 1.0
+- `ear_description`: "keen ears"
+
+#### HasMouth
+
+Enables Say, Eat, Drink, Taste verbs.
+
+```go
+type HasMouth struct {
+    component.OComponent
+}
+```
+
+**Component Properties:**
+- `has_mouth` (flag): Whether entity has functional mouth
+- `taste_sensitivity` (property): Taste sensitivity
+- `mouth_description` (field): Description of mouth
+
+**Default Values:**
+- `has_mouth`: false
+- `taste_sensitivity`: 1.0
+- `mouth_description`: "expressive mouth"
+
+#### HasBrain
+
+Enables Consider verb and with eyes enables Close Examine.
+
+```go
+type HasBrain struct {
+    component.OComponent
+}
+```
+
+**Component Properties:**
+- `has_brain` (flag): Whether entity has functional brain
+- `intelligence` (property): Intelligence level
+- `brain_type` (field): Type/description of brain
+
+**Default Values:**
+- `has_brain`: false
+- `intelligence`: 10.0
+- `brain_type`: "thinking brain"
+
+#### HasSoul
+
+Provides spiritual essence and connection.
+
+```go
+type HasSoul struct {
+    component.OComponent
+}
+```
+
+**Component Properties:**
+- `has_soul` (flag): Whether entity has a soul
+- `soul_strength` (property): Strength of spiritual essence
+- `soul_type` (field): Type of soul
+
+**Default Values:**
+- `has_soul`: false
+- `soul_strength`: 1.0
+- `soul_type`: "mortal soul"
+
+#### HasAttributes
+
+Gives an object key value pairs that contain attributes meant to be rolled against.
+
+```go
+type HasAttributes struct {
+    component.OComponent
+}
+```
+
+**Component Properties:**
+- `has_attributes` (flag): Whether entity has attributes
+- `strength` (property): Physical strength
+- `dexterity` (property): Agility and coordination
+- `constitution` (property): Health and endurance
+- `wisdom` (property): Wisdom and perception
+- `charisma` (property): Social presence
+
+**Default Values:**
+- `has_attributes`: false
+- `strength`: 10.0
+- `dexterity`: 10.0
+- `constitution`: 10.0
+- `wisdom`: 10.0
+- `charisma`: 10.0
+
+#### CanRead
+
+Enables Read verb and contains book text in the form of topics and text blocks.
+
+```go
+type CanRead struct {
+    component.OComponent
+}
+```
+
+**Component Properties:**
+- `can_read` (flag): Whether the object can be read
+- `content` (field): Main text content
+- `topics` (field): Available topics/chapters
+- `language` (field): Language of the text
+
+**Default Values:**
+- `can_read`: false
+- `content`: "" (empty)
+- `topics`: "" (empty)
+- `language`: "common"
+
+#### CanTalk
+
+Allows an object to respond when things are said to it.
+
+```go
+type CanTalk struct {
+    component.OComponent
+}
+```
+
+**Component Properties:**
+- `can_talk` (flag): Whether the object can engage in conversation
+- `dialogue_tree` (field): Conversation structure
+- `greeting` (field): Default greeting message
+- `friendliness` (property): Social disposition
+
+**Default Values:**
+- `can_talk`: false
+- `dialogue_tree`: "" (empty)
+- `greeting`: "Hello there!"
+- `friendliness`: 0.5
+
+#### IsContainer
+
+Enables placing objects inside of it.
+
+```go
+type IsContainer struct {
+    component.OComponent
+}
+```
+
+**Component Properties:**
+- `is_container` (flag): Whether the object can contain other objects
+- `capacity` (property): Maximum storage capacity
+- `current_load` (property): Current amount stored
+- `contents` (field): List of contained objects
+
+**Default Values:**
+- `is_container`: false
+- `capacity`: 10.0
+- `current_load`: 0.0
+- `contents`: "" (empty)
+
+#### HasPhysicalProperties
+
+Defines Height, Width, Composition.
+
+```go
+type HasPhysicalProperties struct {
+    component.OComponent
+}
+```
+
+**Component Properties:**
+- `has_physical_properties` (flag): Whether the object has defined physical properties
+- `height` (property): Object height
+- `width` (property): Object width
+- `weight` (property): Object weight
+- `composition` (field): Material composition
+
+**Default Values:**
+- `has_physical_properties`: false
+- `height`: 1.0
+- `width`: 1.0
+- `weight`: 1.0
+- `composition`: "unknown material"
+
+#### HasExits
+
+Allows an object to have multiple exits. Exits can be hidden based on object conditions.
+
+```go
+type HasExits struct {
+    component.OComponent
+}
+```
+
+**Component Properties:**
+- `has_exits` (flag): Whether the object has exits
+- `north` (field): North exit destination
+- `south` (field): South exit destination
+- `east` (field): East exit destination
+- `west` (field): West exit destination
+- `up` (field): Up exit destination
+- `down` (field): Down exit destination
+- `hidden_exits` (field): Hidden exit information
+
+**Default Values:**
+- `has_exits`: false
+- All directional fields: "" (empty)
+- `hidden_exits`: "" (empty)
+
+#### CanHold
+
+Enables Hold verb.
+
+```go
+type CanHold struct {
+    component.OComponent
+}
+```
+
+**Component Properties:**
+- `can_hold` (flag): Whether the entity can hold objects
+- `held_in_left` (field): Object held in left hand
+- `held_in_right` (field): Object held in right hand
+- `grip_strength` (property): Holding strength
+
+**Default Values:**
+- `can_hold`: false
+- `held_in_left`: "" (empty)
+- `held_in_right`: "" (empty)
+- `grip_strength`: 1.0
+
+#### CanWear
+
+Enables Wear verb.
+
+```go
+type CanWear struct {
+    component.OComponent
+}
+```
+
+**Component Properties:**
+- `can_wear` (flag): Whether the object can be worn
+- `wear_location` (field): Where the object is worn
+- `armor_class` (property): Defensive value
+- `material` (field): Material type
+
+**Default Values:**
+- `can_wear`: false
+- `wear_location`: "body"
+- `armor_class`: 0.0
+- `material`: "cloth"
+
+#### CanEat
+
+Enables Eat verb.
+
+```go
+type CanEat struct {
+    component.OComponent
+}
+```
+
+**Component Properties:**
+- `can_eat` (flag): Whether the object can be eaten
+- `nutrition_value` (property): Nutritional value
+- `taste` (field): Flavor description
+- `effect` (field): Effects when consumed
+
+**Default Values:**
+- `can_eat`: false
+- `nutrition_value`: 1.0
+- `taste`: "bland"
+- `effect`: "" (empty)
+
+#### CanDrink
+
+Enables Drink verb.
+
+```go
+type CanDrink struct {
+    component.OComponent
+}
+```
+
+**Component Properties:**
+- `can_drink` (flag): Whether the object can be drunk
+- `liquid_amount` (property): Amount of liquid
+- `liquid_type` (field): Type of liquid
+- `taste` (field): Flavor description
+- `effect` (field): Effects when consumed
+
+**Default Values:**
+- `can_drink`: false
+- `liquid_amount`: 1.0
+- `liquid_type`: "water"
+- `taste`: "refreshing"
+- `effect`: "" (empty)
+
+#### CanFight
+
+Enables combat capabilities.
+
+```go
+type CanFight struct {
+    component.OComponent
+}
+```
+
+**Component Properties:**
+- `can_fight` (flag): Whether the entity can engage in combat
+- `health` (property): Current health points
+- `attack_power` (property): Attack strength
+- `defense` (property): Defensive capability
+- `combat_style` (field): Fighting style
+
+**Default Values:**
+- `can_fight`: false
+- `health`: 100.0
+- `attack_power`: 10.0
+- `defense`: 5.0
+- `combat_style`: "defensive"
+
 ### Prototype System
 
 #### ObjectPrototype
@@ -305,6 +660,93 @@ type VerbType struct {
     Name string
 }
 ```
+
+#### Built-in Verbs
+
+##### Look
+Retrieves visual scope based on parameters. User can define scope by specifying what to look at. Multiple objects can be specified. Scope is sent to renderer alongside the looking object to render a top level view.
+
+**Required Components:** HasEyes
+
+##### Go
+Attempts to move the character in the direction specified. The going object must have the necessary requirements to travel in the given direction (legs, wings, attributes).
+
+**Required Components:** HasLegs
+
+##### Take
+Attempts to hold or add the targeted object to the taking objects container.
+
+**Required Components:** HasHands
+
+##### Hold
+Attempts to hold an object in hand. Held items are used with actions. When fighting your held items attributes are used in calculations.
+
+**Required Components:** HasHands, CanHold
+
+##### Move
+Moves an item from one place to another.
+
+**Required Components:** HasHands
+
+##### Open/Close
+Opens or closes an object if it can be opened.
+
+**Required Components:** HasHands
+
+##### Lock/Unlock
+Prevents/allows an object from being opened without a key.
+
+**Required Components:** HasHands
+
+##### Drop
+Places an item on the ground (move overlap).
+
+**Required Components:** HasHands
+
+##### Listen
+Takes the sounds in an active scope and sends them to the renderer.
+
+**Required Components:** HasEars
+
+##### Say
+Sends messages into the chat stream for the most local scope in the form of heard events.
+
+**Required Components:** HasMouth
+
+##### Eat/Drink/Taste
+Attempts to consume object, render taste and effect.
+
+**Required Components:** HasMouth
+
+##### Read
+Attempts to read an object. Can be given a 'topics' dict that lists keys as headings and values as body text for a book, sign, etc.
+
+**Required Components:** HasEyes
+
+##### Wear
+Attempts to wear an object.
+
+**Required Components:** HasHands
+
+##### Pickpocket
+Attempts to covertly take from an object with a container.
+
+**Required Components:** HasHands
+
+##### Fight
+Attempts to start a fight encounter with object.
+
+**Required Components:** CanFight
+
+##### Consider
+Analyzes an object or situation.
+
+**Required Components:** HasBrain
+
+##### Close Examine
+Performs detailed examination with eyes and brain.
+
+**Required Components:** HasEyes, HasBrain
 
 ### Rendering System
 
