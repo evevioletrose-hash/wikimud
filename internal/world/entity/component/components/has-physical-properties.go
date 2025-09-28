@@ -14,6 +14,11 @@ func (h *HasPhysicalProperties) BuildComponent(p *prototype.ObjectPrototype) com
 	newComponent := HasPhysicalProperties{}
 	oComponent := newComponent.OComponent
 
+	// Initialize maps
+	oComponent.Flags = make(map[string]bool)
+	oComponent.Fields = make(map[string]string)
+	oComponent.Properties = make(map[string]float32)
+
 	if val, ok := p.Flags["has_physical_properties"]; ok {
 		oComponent.SetFlag("has_physical_properties", val)
 	} else {

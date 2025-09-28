@@ -114,6 +114,11 @@ func (c *MyComponent) BuildComponent(p *prototype.ObjectPrototype) component.OCo
     newComponent := MyComponent{}
     oComponent := newComponent.OComponent
     
+    // Initialize maps (required)
+    oComponent.Flags = make(map[string]bool)
+    oComponent.Fields = make(map[string]string)
+    oComponent.Properties = make(map[string]float32)
+    
     // Initialize component fields, flags, and properties
     if val, ok := p.Fields["my_field"]; ok {
         oComponent.SetField("my_field", val)
@@ -170,6 +175,98 @@ func (r *MyRenderer) Render(scope scope.Scope) string {
 ```go
 renderer := &renderers.MyRenderer{}
 output := renderer.Render(gameScope)
+```
+
+## Built-in Components and Verbs
+
+WikiMUD Engine comes with a comprehensive set of built-in components and verbs to accelerate development:
+
+### Available Components
+
+The following components are available out-of-the-box:
+
+**Sensory Components:**
+- `HasEyes` - Vision and sight capabilities, enables Look verb
+- `HasEars` - Hearing capabilities, enables Listen verb  
+- `HasMouth` - Speech and consumption, enables Say/Eat/Drink/Taste verbs
+- `HasBrain` - Intelligence, enables Consider and Close Examine verbs
+
+**Physical Components:**
+- `HasHands` - Manipulation, enables Take/Hold/Move/Open/Close/Drop/Pickpocket verbs
+- `HasLegs` - Movement, enables Go verb
+- `HasSoul` - Spiritual essence and connection
+- `HasAttributes` - RPG-style attributes (Strength, Dexterity, Constitution, Wisdom, Charisma)
+- `HasPhysicalProperties` - Physical dimensions and composition
+
+**Capability Components:**
+- `CanRead` - Reading ability, enables Read verb
+- `CanTalk` - Conversation ability with dialogue trees
+- `CanOpen` - Open/close functionality for doors and containers
+- `IsContainer` - Object containment with capacity management
+- `HasExits` - Room/area exits with directional support
+- `CanHold` - Held item management
+- `CanWear` - Wearable items with armor class
+- `CanEat` - Consumable food items
+- `CanDrink` - Consumable liquids
+- `CanFight` - Combat capabilities with health/attack/defense
+
+### Available Verbs
+
+The following verbs are implemented and ready to use:
+
+**Movement & Navigation:**
+- `Look` - Visual examination of objects and areas
+- `Go` - Movement between areas using exits
+
+**Object Manipulation:**
+- `Take` - Pick up objects
+- `Hold` - Hold objects in hands
+- `Move` - Move objects between locations
+- `Drop` - Place objects on ground
+- `Wear` - Equip wearable items
+
+**Interaction:**
+- `Open/Close` - Operate doors and containers
+- `Lock/Unlock` - Secure objects with keys
+- `Read` - Read books, signs, and documents
+- `Say` - Communicate with other entities
+
+**Sensory:**
+- `Listen` - Hear sounds in the environment
+- `Eat/Drink/Taste` - Consume and taste objects
+
+**Advanced:**
+- `Fight` - Engage in combat
+- `Consider` - Analyze objects and situations
+- `Close Examine` - Detailed examination (requires eyes and brain)
+- `Pickpocket` - Stealthily take from containers
+
+### Usage Examples
+
+```go
+// Create an entity with multiple components
+prototype := &prototype.ObjectPrototype{
+    Fields: map[string]string{
+        "name": "Player",
+        "eye_color": "blue",
+    },
+    Flags: map[string]bool{
+        "has_eyes": true,
+        "has_hands": true,
+        "has_legs": true,
+    },
+    Properties: map[string]float32{
+        "strength": 15.0,
+        "dexterity": 12.0,
+    },
+}
+
+// Components will be automatically initialized based on prototype flags
+player := entity.NewEntity("player1", prototype)
+
+// Execute verbs
+lookVerb := &verbs.Look{}
+result := lookVerb.Execute(player, []entity.WorldObject{}, []string{})
 ```
 
 ## Development Best Practices

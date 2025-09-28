@@ -14,6 +14,11 @@ func (c *CanHold) BuildComponent(p *prototype.ObjectPrototype) component.OCompon
 	newComponent := CanHold{}
 	oComponent := newComponent.OComponent
 
+	// Initialize maps
+	oComponent.Flags = make(map[string]bool)
+	oComponent.Fields = make(map[string]string)
+	oComponent.Properties = make(map[string]float32)
+
 	if val, ok := p.Flags["can_hold"]; ok {
 		oComponent.SetFlag("can_hold", val)
 	} else {

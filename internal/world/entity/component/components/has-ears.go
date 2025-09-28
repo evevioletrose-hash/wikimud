@@ -14,6 +14,11 @@ func (h *HasEars) BuildComponent(p *prototype.ObjectPrototype) component.OCompon
 	newComponent := HasEars{}
 	oComponent := newComponent.OComponent
 
+	// Initialize maps
+	oComponent.Flags = make(map[string]bool)
+	oComponent.Fields = make(map[string]string)
+	oComponent.Properties = make(map[string]float32)
+
 	if val, ok := p.Flags["has_ears"]; ok {
 		oComponent.SetFlag("has_ears", val)
 	} else {

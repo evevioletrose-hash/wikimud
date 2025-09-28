@@ -14,6 +14,11 @@ func (c *CanFight) BuildComponent(p *prototype.ObjectPrototype) component.OCompo
 	newComponent := CanFight{}
 	oComponent := newComponent.OComponent
 
+	// Initialize maps
+	oComponent.Flags = make(map[string]bool)
+	oComponent.Fields = make(map[string]string)
+	oComponent.Properties = make(map[string]float32)
+
 	if val, ok := p.Flags["can_fight"]; ok {
 		oComponent.SetFlag("can_fight", val)
 	} else {

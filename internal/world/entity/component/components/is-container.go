@@ -14,6 +14,11 @@ func (i *IsContainer) BuildComponent(p *prototype.ObjectPrototype) component.OCo
 	newComponent := IsContainer{}
 	oComponent := newComponent.OComponent
 
+	// Initialize maps
+	oComponent.Flags = make(map[string]bool)
+	oComponent.Fields = make(map[string]string)
+	oComponent.Properties = make(map[string]float32)
+
 	if val, ok := p.Flags["is_container"]; ok {
 		oComponent.SetFlag("is_container", val)
 	} else {

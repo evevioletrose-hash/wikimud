@@ -13,6 +13,11 @@ type HasHands struct {
 func (h *HasHands) BuildComponent(p *prototype.ObjectPrototype) component.OComponent {
 	newComponent := HasHands{}
 	oComponent := newComponent.OComponent
+	
+	// Initialize maps
+	oComponent.Flags = make(map[string]bool)
+	oComponent.Fields = make(map[string]string)
+	oComponent.Properties = make(map[string]float32)
 
 	if val, ok := p.Flags["has_hands"]; ok {
 		oComponent.SetFlag("has_hands", val)

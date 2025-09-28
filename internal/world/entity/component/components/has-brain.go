@@ -14,6 +14,11 @@ func (h *HasBrain) BuildComponent(p *prototype.ObjectPrototype) component.OCompo
 	newComponent := HasBrain{}
 	oComponent := newComponent.OComponent
 
+	// Initialize maps
+	oComponent.Flags = make(map[string]bool)
+	oComponent.Fields = make(map[string]string)
+	oComponent.Properties = make(map[string]float32)
+
 	if val, ok := p.Flags["has_brain"]; ok {
 		oComponent.SetFlag("has_brain", val)
 	} else {

@@ -14,6 +14,11 @@ func (h *HasAttributes) BuildComponent(p *prototype.ObjectPrototype) component.O
 	newComponent := HasAttributes{}
 	oComponent := newComponent.OComponent
 
+	// Initialize maps
+	oComponent.Flags = make(map[string]bool)
+	oComponent.Fields = make(map[string]string)
+	oComponent.Properties = make(map[string]float32)
+
 	if val, ok := p.Flags["has_attributes"]; ok {
 		oComponent.SetFlag("has_attributes", val)
 	} else {

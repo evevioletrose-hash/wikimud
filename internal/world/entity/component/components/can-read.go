@@ -14,6 +14,11 @@ func (c *CanRead) BuildComponent(p *prototype.ObjectPrototype) component.OCompon
 	newComponent := CanRead{}
 	oComponent := newComponent.OComponent
 
+	// Initialize maps
+	oComponent.Flags = make(map[string]bool)
+	oComponent.Fields = make(map[string]string)
+	oComponent.Properties = make(map[string]float32)
+
 	if val, ok := p.Flags["can_read"]; ok {
 		oComponent.SetFlag("can_read", val)
 	} else {

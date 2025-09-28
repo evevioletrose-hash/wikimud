@@ -14,6 +14,11 @@ func (c *CanTalk) BuildComponent(p *prototype.ObjectPrototype) component.OCompon
 	newComponent := CanTalk{}
 	oComponent := newComponent.OComponent
 
+	// Initialize maps
+	oComponent.Flags = make(map[string]bool)
+	oComponent.Fields = make(map[string]string)
+	oComponent.Properties = make(map[string]float32)
+
 	if val, ok := p.Flags["can_talk"]; ok {
 		oComponent.SetFlag("can_talk", val)
 	} else {
